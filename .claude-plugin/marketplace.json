@@ -1,0 +1,20 @@
+{
+  "name": "looplia-skills",
+  "owner": "looplia",
+  "metadata": {
+    "version": "0.1.0",
+    "description": "Looplia Skills provides curated skills—packaged as a Claude Code-compatible plugin—to accelerate workflow design, orchestration, and execution."
+  },
+  "plugins": [
+    {
+      "name": "search-and-research",
+      "description": "Skills for searching and discovering information across the internet. Use these skills when you need to find content from various sources like web pages, feeds, videos, and more.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "skills/search-and-research/web-search",
+        "skills/search-and-research/rss-reader"
+      ]
+    }
+  ]
+}
