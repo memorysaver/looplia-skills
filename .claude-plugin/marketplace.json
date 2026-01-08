@@ -1,6 +1,9 @@
 {
   "name": "looplia-skills",
-  "owner": "looplia",
+  "owner": {
+    "name": "looplia",
+    "email": "contact@looplia.run"
+  },
   "metadata": {
     "version": "0.1.0",
     "description": "Looplia Skills provides curated skills—packaged as a Claude Code-compatible plugin—to accelerate workflow design, orchestration, and execution."
@@ -12,8 +15,8 @@
       "source": "./",
       "strict": false,
       "skills": [
-        "skills/search-and-research/web-search",
-        "skills/search-and-research/rss-reader"
+        "./skills/search-and-research/web-search",
+        "./skills/search-and-research/rss-reader"
       ]
     },
     {
@@ -22,7 +25,7 @@
       "source": "./",
       "strict": false,
       "skills": [
-        "skills/context-management/planning-with-files"
+        "./skills/context-management/planning-with-files"
       ]
     }
   ]
