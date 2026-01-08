@@ -15,6 +15,15 @@
         "skills/search-and-research/web-search",
         "skills/search-and-research/rss-reader"
       ]
+    },
+    {
+      "name": "context-management",
+      "description": "Skills for managing context, planning, and maintaining persistent memory across sessions. Use when you need to organize multi-step tasks, track progress, or preserve information.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "skills/context-management/planning-with-files"
+      ]
     }
   ]
 }

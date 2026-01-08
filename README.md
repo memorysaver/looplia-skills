@@ -19,6 +19,7 @@ Looplia Skills provides curated skills—packaged as a Claude Code-compatible pl
 | Group | Purpose |
 |-------|---------|
 | **search-and-research** | Searching and discovering information across the internet |
+| **context-management** | Managing context, planning, and maintaining persistent memory across sessions |
 
 ## Related Projects
 
