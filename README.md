@@ -8,7 +8,7 @@ Looplia Skills provides curated skills—packaged as a Claude Code-compatible pl
 
 ```bash
 # Add the marketplace
-/plugin marketplace add looplia/looplia-skills
+/plugin marketplace add memorysaver/looplia-skills
 
 # Install the search-and-research plugin group
 /plugin install search-and-research@looplia-skills
