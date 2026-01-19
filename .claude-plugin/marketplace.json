@@ -16,7 +16,8 @@
       "strict": false,
       "skills": [
         "./skills/search-and-research/web-search",
-        "./skills/search-and-research/rss-reader"
+        "./skills/search-and-research/rss-reader",
+        "./skills/search-and-research/browser-research"
       ]
     },
     {
