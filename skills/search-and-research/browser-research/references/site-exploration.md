@@ -2,6 +2,66 @@
 
 Patterns for deep-diving into a single domain to understand its structure and find specific content.
 
+## Scenario Recipes
+
+### Documentation crawl
+
+Intent: Inventory documentation pages and top-level headings.
+
+Steps:
+1. Open the docs landing page and snapshot the sidebar.
+2. Visit each sidebar link and extract page titles or headings.
+3. Track visited URLs and stop when all sections are covered.
+
+Output:
+```json
+{
+  "source_url": "https://example.com/docs",
+  "pages": [
+    {"title": "Getting Started", "url": "/docs/start"}
+  ],
+  "total_pages": 24
+}
+```
+
+### Category discovery
+
+Intent: Map primary navigation and section URLs for a site.
+
+Steps:
+1. Open the homepage and snapshot the header/navigation.
+2. Extract section names and URLs, then capture footer links.
+3. Record URL patterns and note any auth-only areas.
+
+Output:
+```json
+{
+  "source_url": "https://example.com",
+  "sections": [
+    {"name": "Products", "url": "/products"}
+  ],
+  "notes": "Docs are in /docs"
+}
+```
+
+### Auth-gated inventory
+
+Intent: List protected sections after authentication.
+
+Steps:
+1. Log in and wait for the post-login landing page.
+2. Save auth state and navigate to key protected areas.
+3. Record accessible sections and any access errors.
+
+Output:
+```json
+{
+  "source_url": "https://example.com",
+  "auth_required": ["/dashboard", "/settings"],
+  "errors": []
+}
+```
+
 ## Site Mapping
 
 Understand what's available before extracting:

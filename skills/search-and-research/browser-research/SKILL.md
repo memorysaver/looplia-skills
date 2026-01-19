@@ -1,17 +1,20 @@
 ---
 name: browser-research
 description: |
-  Deep web research using agent-browser. Use for researching topics across websites,
-  extracting data from dynamic pages, navigating search results, and building
-  comprehensive reports.
+  This skill should be used when the user needs to perform deep web research
+  across multiple websites, extract data from JavaScript-rendered or dynamic pages,
+  navigate through search results or paginated content, or build comprehensive
+  research reports from multiple sources.
 
-  Trigger phrases:
-  - "deep research", "scrape website", "interactive page"
-  - "browse and extract", "fill form and get data"
-  - "navigate through pages", "click through results"
-  - "JavaScript site", "dynamic content"
-tools:
-  - Bash
+  Use this skill when the user says: "research this topic across sites",
+  "scrape this website", "extract data from this page", "compare prices",
+  "browse and extract information", "fill forms and get results",
+  "navigate through pages", "click through search results",
+  "research authenticated content", or "cross-reference multiple sources".
+
+  Prefer this over WebFetch when pages require JavaScript, interaction,
+  authentication, or multi-step navigation.
+allowed-tools: Bash(agent-browser:*)
 ---
 
 # Browser Research
@@ -81,6 +84,26 @@ agent-browser wait --load networkidle
 agent-browser snapshot -i
 # Extract relevant URLs from results
 ```
+
+## Scenario Recipes
+
+Use recipes when you need a repeatable pattern. Each recipe should include:
+
+1. **Intent** - The question being answered and the expected output shape
+2. **Minimal Steps** - 3-6 steps with snapshots, verification, and stop conditions
+3. **Output** - JSON fields with sources, access dates, and missing-data notes
+
+### Extraction
+
+- [Data Extraction Patterns](references/data-extraction.md) - Feed top-N, paginated catalog, filtered results
+
+### Comparison
+
+- [Multi-Source Research](references/multi-source.md) - Consensus checks, price/spec comparisons, recency validation
+
+### Exploration
+
+- [Site Exploration](references/site-exploration.md) - Docs crawl, category discovery, auth-gated inventory
 
 ## Data Extraction Strategies
 
@@ -179,6 +202,34 @@ For complete command documentation, see: **agent-browser** skill
 - [Data Extraction Patterns](references/data-extraction.md) - Tables, lists, structured data
 - [Multi-Source Research](references/multi-source.md) - Comparing across sites
 - [Site Exploration](references/site-exploration.md) - Deep-diving single domains
+
+## Handling Failures
+
+Research automation can fail. Handle common issues:
+
+```bash
+# Check if element exists before interacting
+agent-browser is visible @e50
+# If false, the page structure may have changed - re-snapshot
+
+# Timeout waiting for content
+agent-browser wait --load networkidle
+# If this times out, content may require scrolling or interaction
+
+# Element not found - try semantic locators
+agent-browser find text "Submit" click
+# More resilient than refs when DOM structure changes
+
+# Network errors - check page loaded
+agent-browser get url
+# Verify you're on the expected page before extracting
+```
+
+When failures occur:
+- **Re-snapshot** - DOM may have changed
+- **Try `find` locators** - More stable than refs for dynamic content
+- **Check URL** - Redirects or errors may have changed the page
+- **Report limitations** - Note access issues in output, don't silently skip
 
 ## Best Practices
 

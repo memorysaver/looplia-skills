@@ -4,6 +4,83 @@ Patterns for extracting structured data from web pages using agent-browser.
 
 Prefer scoped snapshots (`-s`) on large pages; use full snapshots (`-i`) when mapping overall structure.
 
+## Scenario Recipes
+
+### Top N items from a feed
+
+Intent: Collect the first N feed items matching keywords.
+
+Steps:
+1. Open the feed and snapshot the list container.
+2. Verify the list container is visible, then extract title, link, and time for visible items.
+3. Continue until N matching items are collected; stop when no new items appear.
+
+Output:
+```json
+{
+  "source_url": "https://example.com/feed",
+  "keywords": ["ai", "ml"],
+  "items": [
+    {
+      "title": "Example title",
+      "url": "https://example.com/item",
+      "time": "2025-01-19"
+    }
+  ],
+  "total_matched": 3
+}
+```
+
+### Paginated catalog export
+
+Intent: Export all items across a paginated catalog.
+
+Steps:
+1. Snapshot the catalog container and extract visible items.
+2. Check for the next page button and click it when enabled.
+3. Repeat until the next button is missing or disabled.
+
+Output:
+```json
+{
+  "source_url": "https://example.com/catalog",
+  "items": [
+    {
+      "name": "Item A",
+      "price": "$99"
+    }
+  ],
+  "pages_scraped": 3,
+  "total_items": 120
+}
+```
+
+### Filtered results via form
+
+Intent: Submit filters and capture the resulting list.
+
+Steps:
+1. Fill in the query and select filters.
+2. Submit the form and wait for network idle.
+3. Snapshot the results container and extract matching fields.
+
+Output:
+```json
+{
+  "source_url": "https://example.com/search",
+  "query": "example",
+  "filters": {
+    "category": "news"
+  },
+  "results": [
+    {
+      "title": "Result A",
+      "url": "https://example.com/result"
+    }
+  ]
+}
+```
+
 ## Tables
 
 Tables often contain valuable structured data. Extract systematically:

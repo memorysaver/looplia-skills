@@ -4,6 +4,83 @@ Patterns for comparing and cross-referencing information across multiple website
 
 Normalize terms and units (dates, currencies, measurements) before comparing values.
 
+## Scenario Recipes
+
+### Cross-site consensus check
+
+Intent: Compare a single data point across three sources.
+
+Steps:
+1. Open each source in a separate session and snapshot the target area.
+2. Extract the same field from each site and normalize units.
+3. Record agreement or conflict and note missing fields.
+
+Output:
+```json
+{
+  "topic": "Example data point",
+  "values": {
+    "source_a": "Value A",
+    "source_b": "Value B",
+    "source_c": "Value C"
+  },
+  "consensus": "agreed | conflicting | partial",
+  "accessed": {
+    "source_a": "2025-01-19",
+    "source_b": "2025-01-19",
+    "source_c": "2025-01-19"
+  }
+}
+```
+
+### Price or spec comparison
+
+Intent: Compare structured specs or pricing across vendors.
+
+Steps:
+1. Extract the same fields per vendor (price, tier, limits).
+2. Normalize currency, units, and ranges.
+3. Flag missing data and conflicting values.
+
+Output:
+```json
+{
+  "product": "Example product",
+  "fields": ["price", "storage"],
+  "vendors": {
+    "vendor_a": {"price": "$99", "storage": "100GB"},
+    "vendor_b": {"price": "$89", "storage": "1TB"}
+  },
+  "notes": "Vendor B uses annual pricing",
+  "accessed": {
+    "vendor_a": "2025-01-19",
+    "vendor_b": "2025-01-19"
+  }
+}
+```
+
+### Recency validation
+
+Intent: Resolve conflicts by favoring the most recent primary source.
+
+Steps:
+1. Capture last updated dates from each source.
+2. Prefer primary sources when timestamps are close.
+3. Document the decision rationale.
+
+Output:
+```json
+{
+  "finding": "Example claim",
+  "sources": {
+    "official": {"value": "X", "updated": "2025-01-18"},
+    "secondary": {"value": "Y", "updated": "2024-12-01"}
+  },
+  "resolution": "Used official source due to newer update",
+  "confidence": "high"
+}
+```
+
 ## Parallel Sessions
 
 Use named sessions to maintain separate browser contexts:
