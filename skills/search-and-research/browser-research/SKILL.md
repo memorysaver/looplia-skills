@@ -14,10 +14,34 @@ description: |
 
   Prefer this over WebFetch when pages require JavaScript, interaction,
   authentication, or multi-step navigation.
+compatibility: Requires agent-browser CLI. Install with npm install -g agent-browser && agent-browser install
 allowed-tools: Bash(agent-browser:*)
 ---
 
 # Browser Research
+
+## Prerequisites
+
+This skill requires the `agent-browser` CLI tool from [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser).
+
+### Installation
+
+```bash
+# Install the CLI globally
+npm install -g agent-browser
+
+# Install Chromium browser (required)
+agent-browser install
+```
+
+### Verify Installation
+
+```bash
+agent-browser --version
+agent-browser install --check
+```
+
+If you see version output and a successful browser check, you're ready to use this skill.
 
 Execute deep web research missions using agent-browser for interactive page navigation and data extraction.
 
@@ -186,7 +210,7 @@ agent-browser --session src-b fill @e3 "query"
 
 ## Quick Reference
 
-For complete command documentation, see: **agent-browser** skill
+For complete command documentation, see: [agent-browser CLI](https://github.com/vercel-labs/agent-browser)
 
 | Task | Command |
 |------|---------|

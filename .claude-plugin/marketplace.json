@@ -16,8 +16,7 @@
       "strict": false,
       "skills": [
         "./skills/search-and-research/rss-reader",
-        "./skills/search-and-research/browser-research",
-        "./skills/search-and-research/agent-browser"
+        "./skills/search-and-research/browser-research"
       ]
     },
     {
